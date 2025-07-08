@@ -1,0 +1,135 @@
+---js
+const eleventyNavigation = {
+    key: "Home",
+    order: 1
+};
+
+const numberOfLatestPostsToShow = 3;
+---
+
+<div class="p-0 mx-auto max-w-2xl">
+
+
+<div class="hero">
+  <div class="hero-content text-center">
+    <div class>
+      <h1 class="text-5xl">Hi! I'm João Pacheco</h1>
+      <p class="text-xl">
+        In an AI world, our superpower isn't just technical skill, it's our human ability to connect, tell stories, and find the heart of every problem. 
+        <br/>
+        While having fun doing it!
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<h2 class="text-2xl text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight mt-2">
+    Chapter 1 <span class="mt-1 text-sm font-light"> The technical foundation </span>
+</h2>
+<div class="chapter-body"> 
+<p> 
+    My journey began with curiosity about how things work, by stealthily stealing my brother's introduction to programming book and spending hours trying to solve the n-queens problem, barely knowing what Java was. As the years went by and I started to know more, feeling the weight of an ever-changing world, the enthusiasm and need to build things always stayed with me. But somewhere along the way, I realized that the most elegant solutions aren't just technically sound: they're human-centered.
+</p>
+<p>
+    I want to craft software that doesn't just function, but feels right to use. Every line of code becomes a conversation with a future user, a small story about how we can make a meaningful impact on someone, whether that's making them more productive, faster, or simply happier.
+</p>
+
+<h3 class="text-xl">Languages that I've used</h3>
+
+<p>
+    I'm proficient in both frontend and backend development, with expertise in:
+    <ul class='list-disc'>
+        <li> JavaScript </li>
+        <li> Typescript </li>
+        <li> Java </li>
+        <li> Kotlin </li>
+        <li> Python </li>
+    </ul>
+</p>
+
+<p>
+    But like any means of communication, what matters most is the content, not the medium. I can quickly pick up new languages and adapt when a challenge requires it.
+<br/>
+    At the end of the day, programming languages are just different ways to express the same fundamental ideas, again and again. 
+</p>
+
+<h3 class="text-xl">I enjoy working across the whole stack</h3>
+
+        <p>
+        Whether crafting user experiences on the frontend or architecting systems on the backend, each layer requires tight cohesion to behave as a whole. Having a clear understanding of how everything works, from the moment a user clicks a button to the moment a record is fetched from the database, is one of my greatest strengths.
+        </p>
+
+        <p>
+        By no means am I an expert in everything (as the saying goes: jack of all trades, master of none). You'll usually find me tinkering in the backend or infrastructure, but when required, I can hold my own on the frontend as well.	
+        </p>
+</div>
+
+<h2 class="text-2xl text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+    Chapter 2  <span class="mt-1 text-sm font-light"> From Ideas to Reality </span>
+</h2>
+<div class="chapter-body"> 
+    <p>
+       The gap between "I have an idea" and "I have a working product" is where I thrive. I've learned that the best products aren't born from perfect initial concepts—they emerge from honest conversations about what people actually need and iterative refinement of what's possible.
+    <p>
+
+    <p>
+        My approach starts with questions, not assumptions. What problem are we really solving? Who are we solving it for? What's the simplest version that could actually work? I find that spending time understanding the core need upfront saves weeks of building the wrong thing later. I have worked in telecommunications, financial crime prevention, building spreadsheets, and accounting software, and in each of these areas, I deeply immersed myself learning the ins and outs: understanding the business domain, discovering what users truly need, and determining how software can help them.
+    </p>
+
+    <p>
+        This approach helps me better plan the development phase and reduce the risk of each project by bridging the gap between domain experts and the development team. By creating intermediate deliverables that align with stakeholder expectations, I ensure the team's output stays on track from concept to completion.
+    </p>
+
+    <p>
+        I believe that two of the most important things in software development are predictability and communication. Predictability comes from thorough testing and deeply understanding both the subject matter and the tools we're using. Communication happens through constant iteration and requesting feedback from everyone involved. When you combine these two principles with genuine domain understanding, you create software that doesn't just work—it works the way people actually need it to.
+    </p>
+</div>
+
+<h2 class="text-2xl text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+    Chapter 3  <span class="mt-1 text-sm font-light"> Growing together </span> 
+</h2>
+<div class="chapter-body"> 
+    <p>
+        Mentoring developers, leading teams, and fostering growth has taught me that technical skills are just the beginning. The growth I spark in others, and that others spark in me, is as rewarding as building software that gets used.
+    </p>
+
+    <p>
+        I've discovered that the best way to help someone grow isn't to give them answers, but to help them ask better questions. Through code reviews or iterative design sessions, my approach is to challenge my peers' ideas and refine them into something we're all happy with. You can expect me to always put my ego aside and do my best to grow existing ideas without ever putting my own in front.
+    </p>
+
+    <p>
+        Built software is the starting point, not the destination. Maintaining it and constantly evolving it is what makes us craftsmen of our art, and that's the mentality I always try to bring to the teams I work with.
+    </p>
+</div>
+
+
+
+
+
+
+{% set postsCount = collections.posts | length %}
+{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
+<h2 class="text-2xl text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}
+</h2>
+
+{% set postslist = collections.posts | head(-1 * numberOfLatestPostsToShow) %}
+{% set postslistCounter = postsCount %}
+{% include "postslist.njk" %}
+
+{% set morePosts = postsCount - numberOfLatestPostsToShow %}
+{% if morePosts > 0 %}
+<p>{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found in <a href="blog.njk">the archive</a>.</p>
+{% endif %}
+
+{# List every content page in the project #}
+{#
+<ul>
+    {%- for entry in collections.all %}
+    <li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
+    {%- endfor %}
+</ul>
+#}
+
+</div>

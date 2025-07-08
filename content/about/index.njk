@@ -1,0 +1,94 @@
+---js
+const eleventyNavigation = {
+    key: "About",
+    order: 2
+};
+--- 
+<section class="py-24 relative">
+    <div class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
+        <div class="w-full justify-start items-center gap-8 grid lg:grid-cols-2 grid-cols-1">
+            <div class="w-full flex-col justify-start lg:items-start items-center gap-10 inline-flex">
+                <div class="w-full flex-col justify-start lg:items-start items-center flex">
+                    <h2 class="text-2xl text-gray-900 sm:text-3xl sm:tracking-tight mb-1">About me</h2>
+                    <p class=>
+                        When I'm not thinking about how systems connect, I'm at home in sunny Portugal in the my wonderfull chaotic place. My
+                        partner Rita and I share our space with one dog named Lua and three cats: Mel, Croquete, and Amora.
+                    </p>
+                    <p>
+                        At 31, I find myself in an interesting phase of deliberately broadening my horizons. While I still love the intellectual
+                        challenge of software engineering, I'm discovering that the best solutions often come when you step away from the screen
+                        and let your mind wander through other pursuits.
+                    </p>
+                    <ul>
+                        <li>I've been trying to read more than just technical books.</li>
+                        <li>I'm learning to play guitar and (maybe!) how to sing.</li>
+                        <li>I love cooking and have a particular weakness for baking sourdough.</li>
+                        <li>I also love to play games. I have all the consoles!</li>
+                        <ul></div>
+                    </div>
+                    <div
+                        class="relative">
+                        <!-- Still Image -->
+                        <img
+                        id="stillImage"
+                            src="img/me.jpg"
+                            alt="Still image"
+                            class="w-full max-w-md mx-auto rounded-lg shadow-2xl transition-opacity duration-500"/>
+                        <!-- Video (hidden initially) -->
+                        <video
+                            id="liveVideo"
+                            class="absolute inset-0 w-full max-w-md mx-auto rounded-lg shadow-2xl opacity-0 transition-opacity duration-500"
+                            muted
+                            preload="metadata">
+                            <source src="/video/me_live.mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    <script>
+                        const stillImage = document.getElementById('stillImage');
+                        const liveVideo = document.getElementById('liveVideo');
+                        let hasPlayedOnce = false;
+                        // Auto play after 5 seconds
+                        setTimeout(() => {
+                            if (! hasPlayedOnce) {
+                                playLivePhoto();
+                            }
+                        }, 5000);
+                        function playLivePhoto() {
+                            hasPlayedOnce = true;
+                            // Fade to video
+                            stillImage.style.opacity = '0';
+                            liveVideo.style.opacity = '1';
+                            liveVideo.currentTime = 0;
+                            liveVideo.play();
+                            // Return to still image when video ends
+                            liveVideo.addEventListener('ended', () => {
+                                setTimeout(() => {
+                                    liveVideo.style.opacity = '0';
+                                    stillImage.style.opacity = '1';
+                                });
+                            });
+                        }
+                        // Preload video for smoother playback
+                        liveVideo.addEventListener('loadedmetadata', () => {
+                            liveVideo.currentTime = 0;
+                        });
+                    </script>
+                </div>
+            </section>
+            <section id="carousel" class="carousel carousel-center bg-neutral rounded-box w-full space-x-4 ">
+                <div class="carousel-item max-w-xl">
+                    <img src="img/amora.jpg" class="w-full" alt="Amora"/>
+                </div>
+                <div class="carousel-item max-w-xl">
+                    <img src="img/mel.jpg" class="w-full" alt="Mel"/>
+                </div>
+                <div class="carousel-item max-w-xl">
+                    <img src="img/croquete.jpg" class="w-full" alt="Croquete"/>
+                </div>
+                <div class="carousel-item max-w-xl">
+                    <img src="img/amora_mel.jpg" class="w-full" alt="Amora and Mel"/>
+                </div>
+            </section>
+        </section>
