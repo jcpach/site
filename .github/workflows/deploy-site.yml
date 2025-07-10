@@ -3,8 +3,8 @@ name: Deploy Eleventy Site
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths-ignore:
+      - .github
 
 jobs:
   deploy:
